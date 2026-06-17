@@ -42,11 +42,17 @@ body {
 img { max-width:100%; display:block; }
 a { color:var(--main); text-decoration:none; }
 
-.wrap { width:100%; max-width:var(--maxw); margin-inline:auto; padding:0 24px; }
+.wrap { width:100%; max-width:var(--maxw); margin-inline:auto; padding:32px 24px 64px; }
 
-/* ===== 섹션 공통 — 가로선 없이 여백으로만 ===== */
-section { padding:48px 0; }
-.hero { padding:104px 0 64px; }
+/* ===== 각 섹션 = 흰 카드 ===== */
+section {
+  background:var(--paper);
+  border:1px solid var(--border-mid);
+  border-radius:16px;
+  padding:36px 40px;
+}
+section + section { margin-top:20px; }
+.hero { text-align:center; padding:64px 40px; }
 
 /* 섹션 라벨 (LeftPanel sectionLabel 그대로) */
 .label {
@@ -61,7 +67,6 @@ section { padding:48px 0; }
 .lead { font-size:16px; color:var(--muted); margin:0; line-height:1.75; max-width:none; }
 
 /* ===== HERO ===== */
-.hero { padding:104px 0 64px; border-top:none; text-align:center; }
 .hero .eyebrow {
   display:inline-flex; align-items:center; gap:8px;
   font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--label);
@@ -88,20 +93,19 @@ section { padding:48px 0; }
 .btn-secondary { background:var(--paper); color:var(--main); border-color:var(--border-mid); }
 .btn-secondary:hover { border-color:var(--main); }
 
-/* ===== DEMO (박스 묶음) ===== */
-.demo { padding-top:0; border-top:none; }
-.demo-frame { padding:12px; background:var(--sel-bg); border:1px solid var(--border-mid); border-radius:14px; }
-.demo-frame img { width:100%; border-radius:8px; border:1px solid var(--border); }
+/* ===== DEMO (섹션 카드 안 이미지) ===== */
+section.demo { padding:12px; }
+.demo img { width:100%; border-radius:10px; border:1px solid var(--border); display:block; }
 
 /* ===== 칩 (왜 만들었나) ===== */
 .chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:24px; }
 .chip { font-size:13px; color:var(--sub); background:var(--chip-bg); padding:8px 16px; border-radius:999px; }
 
-/* ===== 카드 그리드 (사용자 / 핵심기능) ===== */
+/* ===== 카드 그리드 (사용자 / 핵심기능) — 섹션 카드 안 서브 카드 ===== */
 .rows { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:8px; }
 .r {
   display:flex; align-items:flex-start; gap:12px;
-  padding:22px 20px; border:1px solid var(--border-mid); border-radius:12px; background:var(--paper);
+  padding:20px 18px; border:1px solid var(--border); border-radius:10px; background:var(--sel-bg);
 }
 .r-mark { flex:none; width:8px; height:8px; border-radius:2px; background:var(--main); margin-top:7px; }
 .r-title { font-family:var(--font); font-size:15px; font-weight:500; color:var(--main); margin:0 0 5px; }
@@ -109,9 +113,9 @@ section { padding:48px 0; }
 
 /* ===== STEP 그리드 (동작 방식 6개 + 아이콘) ===== */
 .steps { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:8px; }
-.step { padding:24px 20px; border:1px solid var(--border-mid); border-radius:12px; background:var(--paper); }
+.step { padding:24px 20px; border:1px solid var(--border); border-radius:10px; background:var(--sel-bg); }
 .step-icon {
-  width:40px; height:40px; border-radius:10px; background:var(--sel-bg);
+  width:40px; height:40px; border-radius:10px; background:var(--paper);
   border:1px solid var(--border); display:flex; align-items:center; justify-content:center;
   margin-bottom:16px; color:var(--main);
 }
@@ -132,7 +136,7 @@ section { padding:48px 0; }
 .tag-list { list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:8px; }
 .tag-list li {
   font-size:13px; color:var(--main);
-  background:var(--paper); border:1px solid var(--border-mid);
+  background:var(--sel-bg); border:1px solid var(--border);
   padding:6px 12px; border-radius:8px;
 }
 .note {
@@ -144,7 +148,7 @@ section { padding:48px 0; }
 .checks { display:grid; gap:10px; margin-top:8px; }
 .c {
   display:flex; align-items:flex-start; gap:14px;
-  padding:18px 20px; border:1px solid var(--border-mid); border-radius:12px; background:var(--paper);
+  padding:18px 20px; border:1px solid var(--border); border-radius:10px; background:var(--sel-bg);
   font-size:15px; color:var(--main);
 }
 .c-box {
@@ -155,8 +159,8 @@ section { padding:48px 0; }
 
 /* ===== 차별점 (비교 2열 카드) ===== */
 .compare { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:8px; }
-.compare-col { border:1px solid var(--border-mid); border-radius:12px; background:var(--paper); overflow:hidden; }
-.compare-col.is-brand { border-color:var(--main); }
+.compare-col { border:1px solid var(--border); border-radius:12px; background:var(--sel-bg); overflow:hidden; }
+.compare-col.is-brand { border:1px solid var(--main); background:var(--paper); }
 .compare-head {
   padding:16px 20px; font-family:var(--font); font-size:14px; font-weight:600; color:var(--main);
   border-bottom:1px solid var(--border); display:flex; align-items:center; gap:8px;
@@ -169,9 +173,9 @@ section { padding:48px 0; }
 
 /* ===== 기대 효과 (카드 3열) ===== */
 .outcomes { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:8px; }
-.outcome { padding:24px 20px; border:1px solid var(--border-mid); border-radius:12px; background:var(--paper); }
+.outcome { padding:24px 20px; border:1px solid var(--border); border-radius:10px; background:var(--sel-bg); }
 .outcome-icon {
-  width:40px; height:40px; border-radius:10px; background:var(--sel-bg);
+  width:40px; height:40px; border-radius:10px; background:var(--paper);
   border:1px solid var(--border); display:flex; align-items:center; justify-content:center;
   margin-bottom:16px; color:var(--main);
 }
