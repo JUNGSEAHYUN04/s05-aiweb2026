@@ -28,6 +28,11 @@
   --paper-alt:  #f9f9fb;
   --wash:       rgba(40,43,50,0.04);
 
+  /* 브랜드킷 데모에서 자주 보이는 3색 — 포인트로만 소량 사용 */
+  --c1: #E0663C;  /* primary 계열 */
+  --c2: #455A64;  /* secondary 계열 */
+  --c3: #E8B23A;  /* accent 계열 */
+
   --radius:    16px;
   --radius-sm: 10px;
   --maxw: 940px;
@@ -49,10 +54,17 @@ a:hover { color:#000; }
 
 .container { width:100%; max-width:var(--maxw); margin-inline:auto; padding-inline:24px; }
 
+/* 색 점 마크 (앱의 라벨 옆 사각 마크와 동일 컨셉) */
+.dot {
+  display:inline-block; width:7px; height:7px; border-radius:2px;
+  background:var(--c1); vertical-align:middle; margin-right:2px;
+}
+
 /* ============ HERO ============ */
 .hero { padding:128px 0 72px; text-align:center; border-bottom:1px solid var(--line); }
 .eyebrow {
-  display:inline-block; font-family:var(--font); font-size:12px; font-weight:400;
+  display:inline-flex; align-items:center; gap:7px;
+  font-family:var(--font); font-size:12px; font-weight:400;
   letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-soft);
   background:var(--wash); border:1px solid var(--line);
   padding:6px 14px; border-radius:100px; margin:0 0 28px;
@@ -63,15 +75,17 @@ a:hover { color:#000; }
 }
 .tagline {
   font-size:clamp(16px,2.2vw,19px); color:var(--ink-soft);
-  max-width:54ch; margin:0 auto; line-height:1.65;
+  max-width:50ch; margin:0 auto; line-height:1.65;
 }
 .cta { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:36px; }
 .btn {
-  display:inline-flex; align-items:center; justify-content:center;
+  display:inline-flex; align-items:center; gap:8px; justify-content:center;
   padding:13px 28px; font-family:var(--font); font-size:15px; font-weight:500;
   letter-spacing:-0.01em; border-radius:10px; border:1px solid transparent;
   cursor:pointer; transition:background .18s ease, border-color .18s ease, color .18s ease;
 }
+.btn .arrow { transition:transform .18s ease; }
+.btn:hover .arrow { transform:translateX(3px); }
 .btn-primary { background:var(--ink); color:#fff; }
 .btn-primary:hover { background:#1f2228; color:#fff; }
 .btn-secondary { background:var(--paper); color:var(--ink); border-color:var(--line); }
@@ -111,7 +125,7 @@ main.container { padding-bottom:96px; }
 }
 .section-title {
   font-family:var(--font); font-size:clamp(26px,4vw,38px); font-weight:700;
-  letter-spacing:-0.03em; line-height:1.18; margin:0 0 24px; max-width:22ch; color:var(--ink);
+  letter-spacing:-0.03em; line-height:1.18; margin:0 0 24px; max-width:24ch; color:var(--ink);
 }
 .lead { font-size:17px; color:var(--ink-soft); max-width:60ch; margin:0 0 32px; line-height:1.7; }
 
@@ -122,6 +136,19 @@ main.container { padding-bottom:96px; }
   border-radius:var(--radius-sm); font-size:15px; font-weight:500; color:var(--ink);
 }
 
+/* ============ USER grid ============ */
+.user-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.user-card {
+  padding:26px 24px; background:var(--paper); border:1px solid var(--line);
+  border-radius:var(--radius); transition:border-color .18s ease;
+}
+.user-card:hover { border-color:rgba(40,43,50,0.3); }
+.user-mark {
+  display:block; width:28px; height:28px; border-radius:8px; margin-bottom:16px;
+}
+.user-title { font-family:var(--font); font-size:16px; font-weight:600; letter-spacing:-0.01em; margin:0 0 8px; color:var(--ink); }
+.user-desc { font-size:14px; color:var(--ink-soft); margin:0; line-height:1.6; }
+
 /* ============ FEATURE cards ============ */
 .card-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
 .card {
@@ -129,33 +156,36 @@ main.container { padding-bottom:96px; }
   border-radius:var(--radius); transition:border-color .18s ease;
 }
 .card:hover { border-color:rgba(40,43,50,0.3); }
+.card-mark {
+  display:block; width:24px; height:24px; border-radius:7px; margin-bottom:16px;
+}
 .card-title { font-family:var(--font); font-size:18px; font-weight:600; letter-spacing:-0.02em; margin:0 0 10px; color:var(--ink); }
 .card-desc { font-size:14.5px; color:var(--ink-soft); margin:0; line-height:1.65; }
 
-/* ============ FLOW ============ */
-.flow { list-style:none; margin:0; padding:0; display:grid; gap:1px; background:var(--line);
-  border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; }
-.flow-step { display:flex; gap:20px; align-items:flex-start; padding:26px 28px; background:var(--paper); }
-.flow-num {
-  font-family:var(--font-mono); font-size:14px; font-weight:600; color:var(--ink-faint);
-  flex:none; padding-top:2px;
-}
-.flow-title { font-family:var(--font); font-size:17px; font-weight:600; letter-spacing:-0.02em; margin:0 0 4px; color:var(--ink); }
-.flow-desc { font-size:14.5px; color:var(--ink-soft); margin:0; }
+/* 색 점/마크 데이터 색상 매핑 */
+[data-c="1"] { background:var(--c1); }
+[data-c="2"] { background:var(--c2); }
+[data-c="3"] { background:var(--c3); }
 
-/* ============ COMPARE table ============ */
-.compare {
-  width:100%; border-collapse:separate; border-spacing:0;
-  border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; font-size:15px;
+/* ============ FLOW (가로 카드 + 화살표) ============ */
+.flow-row {
+  display:flex; align-items:stretch; gap:12px;
 }
-.compare th {
-  text-align:left; font-family:var(--font); font-weight:600; padding:16px 22px;
-  background:var(--paper-alt); border-bottom:1px solid var(--line); color:var(--ink);
+.flow-card {
+  flex:1; background:var(--paper); border:1px solid var(--line);
+  border-radius:var(--radius); padding:26px 22px;
 }
-.compare td { padding:15px 22px; border-bottom:1px solid var(--line-soft); color:var(--ink-soft); }
-.compare td:last-child { color:var(--ink); font-weight:500; }
-.compare tr:last-child td { border-bottom:0; }
-.compare td:first-child, .compare th:first-child { border-right:1px solid var(--line); }
+.flow-stage {
+  display:inline-block; font-family:var(--font-mono); font-size:11px; font-weight:600;
+  letter-spacing:0.1em; color:var(--ink-faint);
+  background:var(--wash); border:1px solid var(--line-soft);
+  padding:3px 10px; border-radius:100px; margin-bottom:16px;
+}
+.flow-title { font-family:var(--font); font-size:17px; font-weight:600; letter-spacing:-0.02em; margin:0 0 6px; color:var(--ink); }
+.flow-desc { font-size:14px; color:var(--ink-soft); margin:0; line-height:1.6; }
+.flow-arrow {
+  display:flex; align-items:center; font-size:22px; color:var(--ink-faint); flex:none;
+}
 
 /* ============ STACK ============ */
 .stack-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
@@ -174,6 +204,19 @@ main.container { padding-bottom:96px; }
   border-radius:var(--radius-sm); line-height:1.6;
 }
 
+/* ============ CHECK list (완료 조건) ============ */
+.check-list { list-style:none; margin:0; padding:0; display:grid; gap:1px;
+  background:var(--line); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; }
+.check {
+  display:flex; align-items:flex-start; gap:14px; padding:18px 22px;
+  background:var(--paper); font-size:15px; color:var(--ink);
+}
+.check-box {
+  flex:none; width:20px; height:20px; border-radius:6px;
+  background:var(--ink); color:#fff; font-size:12px;
+  display:flex; align-items:center; justify-content:center; margin-top:1px;
+}
+
 /* ============ COMMENTS ============ */
 .comments { padding-top:88px; }
 .comments-note { font-size:14px; color:var(--ink-soft); margin:0 0 28px; }
@@ -186,16 +229,17 @@ footer a:hover { color:var(--ink); }
 
 /* ============ Responsive ============ */
 @media (max-width:760px) {
-  .card-grid, .stack-grid { grid-template-columns:repeat(2,1fr); }
+  .card-grid, .stack-grid, .user-grid { grid-template-columns:repeat(2,1fr); }
+  .flow-row { flex-direction:column; }
+  .flow-arrow { transform:rotate(90deg); align-self:center; }
 }
 @media (max-width:560px) {
   .hero { padding:88px 0 56px; }
   .block { padding-top:64px; }
   .stats { grid-template-columns:1fr; }
-  .card-grid, .stack-grid, .problem-grid { grid-template-columns:1fr; }
+  .card-grid, .stack-grid, .problem-grid, .user-grid { grid-template-columns:1fr; }
   .cta { flex-direction:column; }
   .btn { width:100%; }
-  .flow-step { padding:22px 20px; gap:16px; }
 }
 
 /* ============ a11y ============ */
