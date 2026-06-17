@@ -111,25 +111,20 @@ section.demo { padding:12px; }
 .r-title { font-family:var(--font); font-size:15px; font-weight:500; color:var(--main); margin:0 0 5px; }
 .r-desc { font-size:14px; color:var(--muted); margin:0; line-height:1.6; }
 
-/* ===== STEP (동작 방식: 카드 사이 화살표, 3개씩 2줄) ===== */
+/* ===== STEP (동작 방식: 아이콘 + 제목만, 카드 사이 화살표) ===== */
 .steps { display:flex; flex-wrap:wrap; align-items:stretch; gap:14px; margin-top:8px; }
 .step {
-  flex:1 1 calc(33.333% - 40px); min-width:200px;
-  display:flex; flex-direction:column;
-  padding:28px 24px; border:1px solid var(--border); border-radius:12px; background:var(--sel-bg);
+  flex:1 1 calc(33.333% - 40px); min-width:180px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;
+  padding:28px 20px; border:1px solid var(--border); border-radius:12px; background:var(--sel-bg);
 }
 .step-icon {
-  width:42px; height:42px; border-radius:11px; background:var(--paper);
+  width:44px; height:44px; border-radius:12px; background:var(--paper);
   border:1px solid var(--border); display:flex; align-items:center; justify-content:center;
-  margin-bottom:20px; color:var(--main);
+  margin-bottom:14px; color:var(--main);
 }
 .step-icon svg { width:20px; height:20px; }
-.step-num {
-  font-family:var(--font-mono); font-size:11px; font-weight:600; color:var(--label-soft);
-  letter-spacing:0.08em; margin:0 0 8px;
-}
-.step-title { font-family:var(--font); font-size:15px; font-weight:600; margin:0 0 8px; color:var(--main); }
-.step-desc { font-size:13px; color:var(--muted); margin:0; line-height:1.6; }
+.step-title { font-family:var(--font); font-size:15px; font-weight:600; margin:0; color:var(--main); }
 .step-arrow {
   flex:0 0 auto; display:flex; align-items:center; justify-content:center;
   color:var(--label-soft); width:18px;
