@@ -5,26 +5,26 @@
    ============================================================ */
 
 @font-face { font-family:"SCDream"; font-weight:300; font-display:swap;
-  src:url("fonts/S-Core_Dream_OTF/SCDream3.otf") format("opentype"); }
+  src:url("fonts/S-Core_Dream_OTF/SCDream3.otf"); }
 @font-face { font-family:"SCDream"; font-weight:400; font-display:swap;
-  src:url("fonts/S-Core_Dream_OTF/SCDream4.otf") format("opentype"); }
+  src:url("fonts/S-Core_Dream_OTF/SCDream4.otf"); }
 @font-face { font-family:"SCDream"; font-weight:500; font-display:swap;
-  src:url("fonts/S-Core_Dream_OTF/SCDream5.otf") format("opentype"); }
+  src:url("fonts/S-Core_Dream_OTF/SCDream5.otf"); }
 @font-face { font-family:"SCDream"; font-weight:600; font-display:swap;
-  src:url("fonts/S-Core_Dream_OTF/SCDream6.otf") format("opentype"); }
+  src:url("fonts/S-Core_Dream_OTF/SCDream6.otf"); }
 @font-face { font-family:"SCDream"; font-weight:700; font-display:swap;
-  src:url("fonts/S-Core_Dream_OTF/SCDream7.otf") format("opentype"); }
+  src:url("fonts/S-Core_Dream_OTF/SCDream7.otf"); }
 
 :root {
   --main:       #282B32;
-  --sub:        rgba(40,43,50,0.8);
-  --muted:      rgba(40,43,50,0.55);
-  --label:      rgba(40,43,50,0.7);
-  --label-soft: rgba(40,43,50,0.4);
-  --border:     rgba(40,43,50,0.08);
-  --border-mid: rgba(40,43,50,0.16);
-  --sel-bg:     rgba(40,43,50,0.04);
-  --chip-bg:    rgba(40,43,50,0.05);
+  --sub:        rgba(40,43,50,0.72);
+  --muted:      rgba(40,43,50,0.5);
+  --label:      rgba(40,43,50,0.62);
+  --label-soft: rgba(40,43,50,0.36);
+  --border:     rgba(40,43,50,0.07);
+  --border-mid: rgba(40,43,50,0.12);
+  --sel-bg:     rgba(40,43,50,0.028);
+  --chip-bg:    rgba(40,43,50,0.04);
   --paper:      #fff;
 
   --maxw: 1080px;
@@ -56,7 +56,7 @@ section + section { margin-top:20px; }
 
 /* 섹션 라벨 (LeftPanel sectionLabel 그대로) */
 .label {
-  font-family:var(--font); font-size:11px; font-weight:400;
+  font-family:var(--font); font-size:14px; font-weight:400;
   letter-spacing:0.1em; text-transform:uppercase; color:var(--label);
   margin:0 0 16px;
 }
@@ -111,21 +111,30 @@ section.demo { padding:12px; }
 .r-title { font-family:var(--font); font-size:15px; font-weight:500; color:var(--main); margin:0 0 5px; }
 .r-desc { font-size:14px; color:var(--muted); margin:0; line-height:1.6; }
 
-/* ===== STEP 그리드 (동작 방식 6개 + 아이콘) ===== */
-.steps { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:8px; }
-.step { padding:24px 20px; border:1px solid var(--border); border-radius:10px; background:var(--sel-bg); }
+/* ===== STEP (동작 방식: 카드 사이 화살표, 3개씩 2줄) ===== */
+.steps { display:flex; flex-wrap:wrap; align-items:stretch; gap:14px; margin-top:8px; }
+.step {
+  flex:1 1 calc(33.333% - 40px); min-width:200px;
+  display:flex; flex-direction:column;
+  padding:28px 24px; border:1px solid var(--border); border-radius:12px; background:var(--sel-bg);
+}
 .step-icon {
-  width:40px; height:40px; border-radius:10px; background:var(--paper);
+  width:42px; height:42px; border-radius:11px; background:var(--paper);
   border:1px solid var(--border); display:flex; align-items:center; justify-content:center;
-  margin-bottom:16px; color:var(--main);
+  margin-bottom:20px; color:var(--main);
 }
 .step-icon svg { width:20px; height:20px; }
 .step-num {
   font-family:var(--font-mono); font-size:11px; font-weight:600; color:var(--label-soft);
-  letter-spacing:0.08em; margin:0 0 6px;
+  letter-spacing:0.08em; margin:0 0 8px;
 }
-.step-title { font-family:var(--font); font-size:15px; font-weight:600; margin:0 0 6px; color:var(--main); }
-.step-desc { font-size:13px; color:var(--muted); margin:0; line-height:1.55; }
+.step-title { font-family:var(--font); font-size:15px; font-weight:600; margin:0 0 8px; color:var(--main); }
+.step-desc { font-size:13px; color:var(--muted); margin:0; line-height:1.6; }
+.step-arrow {
+  flex:0 0 auto; display:flex; align-items:center; justify-content:center;
+  color:var(--label-soft); width:18px;
+}
+.step-arrow svg { width:18px; height:18px; }
 
 /* ===== STACK ===== */
 .stack-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:32px; margin-top:8px; }
@@ -194,15 +203,16 @@ footer a { color:var(--muted); text-decoration:underline; text-underline-offset:
 /* ===== Responsive ===== */
 @media (max-width:680px) {
   .stack-grid { grid-template-columns:1fr; gap:24px; }
-  .steps { grid-template-columns:repeat(2,1fr); }
+  .steps { flex-direction:column; }
+  .step { flex:1 1 auto; }
+  .step-arrow { transform:rotate(90deg); width:auto; padding:2px 0; }
   .rows { grid-template-columns:1fr; }
   .compare { grid-template-columns:1fr; }
   .outcomes { grid-template-columns:1fr; }
 }
 @media (max-width:520px) {
-  section { padding:56px 0; }
-  .hero { padding:80px 0 48px; }
-  .steps { grid-template-columns:1fr; }
+  section { padding:28px 22px; }
+  .hero { padding:48px 22px; }
   .cta { flex-direction:column; }
   .btn { width:100%; }
 }
