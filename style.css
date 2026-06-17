@@ -27,7 +27,7 @@
   --chip-bg:    rgba(40,43,50,0.05);
   --paper:      #fff;
 
-  --maxw: 760px;
+  --maxw: 1080px;
   --font: "SCDream", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   --font-mono: "SF Mono", "JetBrains Mono", ui-monospace, Menlo, monospace;
 }
@@ -44,9 +44,9 @@ a { color:var(--main); text-decoration:none; }
 
 .wrap { width:100%; max-width:var(--maxw); margin-inline:auto; padding:0 24px; }
 
-/* ===== 섹션 공통 — 박스 없이 페이지 위로 ===== */
-section { padding:72px 0; border-top:1px solid var(--border); }
-section:first-of-type { border-top:none; }
+/* ===== 섹션 공통 — 가로선 없이 여백으로만 ===== */
+section { padding:48px 0; }
+.hero { padding:104px 0 64px; }
 
 /* 섹션 라벨 (LeftPanel sectionLabel 그대로) */
 .label {
@@ -97,14 +97,14 @@ section:first-of-type { border-top:none; }
 .chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:24px; }
 .chip { font-size:13px; color:var(--sub); background:var(--chip-bg); padding:8px 16px; border-radius:999px; }
 
-/* ===== 리스트 행 (사용자 / 핵심기능) — 구분선만, 박스 없음 ===== */
-.rows { margin-top:8px; }
+/* ===== 카드 그리드 (사용자 / 핵심기능) ===== */
+.rows { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:8px; }
 .r {
-  display:flex; align-items:flex-start; gap:14px;
-  padding:20px 0; border-top:1px solid var(--border);
+  display:flex; align-items:flex-start; gap:12px;
+  padding:22px 20px; border:1px solid var(--border-mid); border-radius:12px; background:var(--paper);
 }
-.r-mark { flex:none; width:8px; height:8px; border-radius:2px; background:var(--main); margin-top:8px; }
-.r-title { font-family:var(--font); font-size:15px; font-weight:500; color:var(--main); margin:0 0 4px; }
+.r-mark { flex:none; width:8px; height:8px; border-radius:2px; background:var(--main); margin-top:7px; }
+.r-title { font-family:var(--font); font-size:15px; font-weight:500; color:var(--main); margin:0 0 5px; }
 .r-desc { font-size:14px; color:var(--muted); margin:0; line-height:1.6; }
 
 /* ===== STEP 그리드 (동작 방식 6개 + 아이콘) ===== */
@@ -140,11 +140,12 @@ section:first-of-type { border-top:none; }
   background:var(--sel-bg); border:1px solid var(--border); border-radius:10px; line-height:1.6;
 }
 
-/* ===== 완료 조건 ===== */
-.checks { margin-top:8px; }
+/* ===== 완료 조건 (카드) ===== */
+.checks { display:grid; gap:10px; margin-top:8px; }
 .c {
   display:flex; align-items:flex-start; gap:14px;
-  padding:16px 0; border-top:1px solid var(--border); font-size:15px; color:var(--main);
+  padding:18px 20px; border:1px solid var(--border-mid); border-radius:12px; background:var(--paper);
+  font-size:15px; color:var(--main);
 }
 .c-box {
   flex:none; width:20px; height:20px; border-radius:6px;
@@ -152,11 +153,37 @@ section:first-of-type { border-top:none; }
   display:flex; align-items:center; justify-content:center; margin-top:2px;
 }
 
+/* ===== 차별점 (비교 2열 카드) ===== */
+.compare { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:8px; }
+.compare-col { border:1px solid var(--border-mid); border-radius:12px; background:var(--paper); overflow:hidden; }
+.compare-col.is-brand { border-color:var(--main); }
+.compare-head {
+  padding:16px 20px; font-family:var(--font); font-size:14px; font-weight:600; color:var(--main);
+  border-bottom:1px solid var(--border); display:flex; align-items:center; gap:8px;
+}
+.compare-col.is-brand .compare-head { background:var(--sel-bg); }
+.compare-head .mark { width:8px; height:8px; border-radius:2px; background:var(--main); flex:none; }
+.compare-row { padding:14px 20px; font-size:14px; color:var(--muted); line-height:1.55; }
+.compare-row + .compare-row { border-top:1px solid var(--border); }
+.compare-col.is-brand .compare-row { color:var(--sub); }
+
+/* ===== 기대 효과 (카드 3열) ===== */
+.outcomes { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:8px; }
+.outcome { padding:24px 20px; border:1px solid var(--border-mid); border-radius:12px; background:var(--paper); }
+.outcome-icon {
+  width:40px; height:40px; border-radius:10px; background:var(--sel-bg);
+  border:1px solid var(--border); display:flex; align-items:center; justify-content:center;
+  margin-bottom:16px; color:var(--main);
+}
+.outcome-icon svg { width:20px; height:20px; }
+.outcome-title { font-family:var(--font); font-size:15px; font-weight:600; margin:0 0 6px; color:var(--main); }
+.outcome-desc { font-size:13px; color:var(--muted); margin:0; line-height:1.55; }
+
 /* ===== 댓글 ===== */
 .comments-note { font-size:14px; color:var(--muted); margin:0 0 24px; }
 
 /* ===== FOOTER ===== */
-footer { border-top:1px solid var(--border); padding:32px 0; }
+footer { padding:48px 0 40px; }
 footer p { font-size:13px; color:var(--muted); margin:0; text-align:center; }
 footer a { color:var(--muted); text-decoration:underline; text-underline-offset:3px; }
 
@@ -164,6 +191,9 @@ footer a { color:var(--muted); text-decoration:underline; text-underline-offset:
 @media (max-width:680px) {
   .stack-grid { grid-template-columns:1fr; gap:24px; }
   .steps { grid-template-columns:repeat(2,1fr); }
+  .rows { grid-template-columns:1fr; }
+  .compare { grid-template-columns:1fr; }
+  .outcomes { grid-template-columns:1fr; }
 }
 @media (max-width:520px) {
   section { padding:56px 0; }
